@@ -13,21 +13,20 @@ int readfile(char *filename) {
 
     fileptr = fopen(filename, "r");
 
-    char contents[100];
+    char contents[128];
 
     if (fileptr != NULL) {
-        while(fgets(contents, 100, fileptr)) {
-            printf("%s", contents);
+        printf("+---- %s \n|\n", filename);
+        while (fgets(contents, 128, fileptr)) {
+            printf("|   %s", contents);
         }
+        printf("\n");
+        fclose(fileptr);
     } else {
+        fclose(fileptr);
         printf("nat: %s: No such file or directory\n", filename);
-
         return -1;
     }
-
-    fclose(fileptr);
-
-    return 0;
 }
 
 int main(int argc, char *argv[]) {
