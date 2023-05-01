@@ -9,21 +9,19 @@ Python is my native language so if my C code isn't following good practice or ha
 $ nat
 Usage: nat [FILE]...
 Concatenate FILE(s) to standard output.
+
+-p, --pipes              better output formatting with ascii pipes
+-P, --no-pipes           no output formatting with ascii pipes
+    --help               display this help and exit
 ```
 
 ```
 $ nat nat.c
-+---- nat.c 
-|
-|   #include <stdio.h>
-|   #include <string.h>
-|   
-|   void help() {
-|       printf(
-|           "Usage: nat [FILE]...\n"
-|           "Concatenate FILE(s) to standard output.\n"
-|       );
-|   }
-|
+┌──── nat.c 
+│
+│   #include <stdio.h>
+│   #include <stdbool.h>
+│   #include <string.h>
+│   
 . . .
 ```
