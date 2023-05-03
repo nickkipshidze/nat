@@ -35,6 +35,8 @@ int readfile(char *filename, bool pipes) {
         printf("nat: %s: No such file or directory\n", filename);
         return -1;
     }
+
+    return 0;
 }
 
 int main(int argc, char *argv[]) {
@@ -46,8 +48,10 @@ int main(int argc, char *argv[]) {
     bool pipes = true;
 
     for (int arg = 1; arg < argc; arg++){
-        if (!strcmp(argv[arg], "--pipes") || !strcmp(argv[arg], "-p")) pipes = true;
-        else if (!strcmp(argv[arg], "--no-pipes") || !strcmp(argv[arg], "-P")) pipes = false;
+        if (!strcmp(argv[arg], "--pipes") || !strcmp(argv[arg], "-p")) 
+            pipes = true;
+        else if (!strcmp(argv[arg], "--no-pipes") || !strcmp(argv[arg], "-P"))
+            pipes = false;
         else {
             char filename[64]; strcpy(filename, argv[arg]);
             readfile(filename, pipes);
