@@ -8,11 +8,20 @@ void help() {
         "Concatenate FILE(s) to standard output.\n\n"
         "-p, --pipes              better output formatting with ascii pipes\n"
         "-P, --no-pipes           no output formatting with ascii pipes\n"
+        "-c, --color              use color escape sequences\n"
+        "-C, --no-color           dont use color escape sequences\n"
         "    --help               display this help and exit\n"
     );
 }
 
-int readfile(char *filename, bool pipes) {
+void colorcode(int code) {
+    if (code == 0)
+        printf("\033[0m");
+    else
+        printf("\033[0;%dm", code);
+}
+
+int readfile(char *filename, bool pipes, bool color) {
     FILE *fileptr;
 
     fileptr = fopen(filename, "r");
@@ -20,12 +29,20 @@ int readfile(char *filename, bool pipes) {
     char contents[128];
 
     if (fileptr != NULL) {
+        if (color) colorcode(31); // Red
+
         if (pipes) printf("┌──── %s \n│\n", filename);
         else printf("+---- %s \n|\n", filename);
 
         while (fgets(contents, 128, fileptr)) {
-            if (pipes) printf("│   %s", contents);
-            else printf("|   %s", contents);
+            if (color) colorcode(31); // Red
+
+            if (pipes) printf("│   ");
+            else printf("|   ");
+
+            if (color) colorcode(32); // Green
+
+            printf("%s", contents);
         }
 
         printf("\n");
@@ -46,15 +63,20 @@ int main(int argc, char *argv[]) {
     }
 
     bool pipes = true;
+    bool color = true;
 
     for (int arg = 1; arg < argc; arg++){
         if (!strcmp(argv[arg], "--pipes") || !strcmp(argv[arg], "-p")) 
             pipes = true;
         else if (!strcmp(argv[arg], "--no-pipes") || !strcmp(argv[arg], "-P"))
             pipes = false;
+        else if (!strcmp(argv[arg], "--color") || !strcmp(argv[arg], "-c"))
+            color = true;
+        else if (!strcmp(argv[arg], "--no-color") || !strcmp(argv[arg], "-C"))
+            color = false;
         else {
             char filename[64]; strcpy(filename, argv[arg]);
-            readfile(filename, pipes);
+            readfile(filename, pipes, color);
         }
     }
 
