@@ -12,6 +12,8 @@ Concatenate FILE(s) to standard output.
 
 -p, --pipes              better output formatting with ascii pipes
 -P, --no-pipes           no output formatting with ascii pipes
+-c, --color              use color escape sequences
+-C, --no-color           dont use color escape sequences
     --help               display this help and exit
 ```
 
