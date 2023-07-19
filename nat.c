@@ -56,7 +56,7 @@ int readfile(char *filename, bool pipes, bool color) {
     return 0;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     if (argc <= 1 || !strcmp(argv[1], "--help")) {
         help();
         return 0;
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
     bool pipes = true;
     bool color = true;
 
-    for (int arg = 1; arg < argc; arg++){
+    for (int arg = 1; arg < argc; arg++) {
         if (!strcmp(argv[arg], "--pipes") || !strcmp(argv[arg], "-p")) 
             pipes = true;
         else if (!strcmp(argv[arg], "--no-pipes") || !strcmp(argv[arg], "-P"))
