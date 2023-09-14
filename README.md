@@ -26,3 +26,10 @@ $ nat nat.c
 │   
 . . .
 ```
+
+## Running the code
+
+1. Clone the GitHub repository: `git clone https://github.com/NickKipshidze/nat`
+0. cd into the directory: `cd nat`
+0. Build the project: `make`
+0. Run the binary: `./nat`
