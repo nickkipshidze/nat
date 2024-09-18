@@ -1,4 +1,4 @@
-# nat
+# NAT
 
 Nick's version of concatenate program. <br><br>
 Python is my native language so if my C code isn't following good practice or has some issues please correct me on them.
